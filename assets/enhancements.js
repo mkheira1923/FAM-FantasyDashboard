@@ -132,14 +132,15 @@ function clarifyExistingUI(D){
   const annotate=()=>{
     $$('.manager-card .mini-stats').forEach(box=>{
       const labels=$$('small',box);
-      if(labels[0]){labels[0].textContent='CAREER REG';labels[0].title='Career regular-season record';}
-      if(labels[1]){labels[1].textContent='TITLE PLAYOFF';labels[1].title='Only games on the championship path';}
-      if(labels[2]){labels[2].textContent='ESPN PR';labels[2].title="ESPN's latest Power Rank snapshot";}
+      if(labels[0]&&labels[0].textContent!=='CAREER REG'){labels[0].textContent='CAREER REG';labels[0].title='Career regular-season record';}
+      if(labels[1]&&labels[1].textContent!=='TITLE PLAYOFF'){labels[1].textContent='TITLE PLAYOFF';labels[1].title='Only games on the championship path';}
+      if(labels[2]&&labels[2].textContent!=='ESPN PR'){labels[2].textContent='ESPN PR';labels[2].title="ESPN's latest Power Rank snapshot";}
     });
     $$('.power-card small').forEach(x=>x.title="ESPN's currentProjectedRank captured in the latest snapshot");
   };
   annotate();
-  const managerGrid=$('#managerGrid'); if(managerGrid) new MutationObserver(annotate).observe(managerGrid,{childList:true,subtree:true});
+  setTimeout(annotate,250);
+  setTimeout(annotate,1000);
 }
 
 function mobilePolish(){
