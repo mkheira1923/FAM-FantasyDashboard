@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111318" />
+  <meta name="description" content="FAM Fantasy Football league history, champions, rivalries, records and manager profiles." />
+  <title>FAM Fantasy Football — League Record Book</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="FAM Fantasy Football home">
+      <span class="brand-mark">FAM</span>
+      <span><strong>Fantasy Football</strong><small>League Record Book</small></span>
+    </a>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
+    <nav id="nav">
+      <a href="#home">Home</a><a href="#current">Current</a><a href="#standings">All-Time</a>
+      <a href="#champions">Champions</a><a href="#h2h">H2H</a><a href="#records">Records</a><a href="#managers">Managers</a>
+      <a href="#history">History</a><a href="#scores">Scores</a><a href="#playoffs">Playoffs</a><a href="#draft">Draft</a>
+    </nav>
+    <div class="live-pill"><i></i><span>Validated data</span></div>
+  </header>
+
+  <main>
+    <section id="home" class="hero section-shell">
+      <div class="hero-copy">
+        <div class="eyebrow">EST. <span id="firstSeason">2010</span> • ESPN LEAGUE <span id="leagueId">664749</span></div>
+        <h1>History gets remembered.<br><span>FAM gets recorded.</span></h1>
+        <p>Championships, grudges, collapses, legendary Sundays and every receipt we could preserve.</p>
+        <div class="hero-actions"><a class="btn primary" href="#standings">View all-time standings</a><a class="btn ghost" href="#h2h">Settle a rivalry</a></div>
+      </div>
+      <article class="champion-card" id="championCard"></article>
+    </section>
+
+    <section class="stats-band section-shell" id="leagueStats"></section>
+
+    <section id="current" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">CURRENT SEASON</span><h2 id="currentSeasonTitle">2026 Power Board</h2><p>ESPN power rank snapshots preserved week by week.</p></div><div class="section-tools"><span class="status-dot"></span><span id="snapshotLabel">Latest snapshot</span></div></div>
+      <div class="power-grid" id="powerGrid"></div>
+    </section>
+
+    <section id="standings" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">THE BIG BOARD</span><h2>All-Time Standings</h2><p>Current 12 only. Main record is regular season; competitive record adds true championship-path playoff games.</p></div><button class="btn small ghost" id="toggleRecord">Show competitive record</button></div>
+      <div class="table-card"><div class="table-scroll"><table id="standingsTable"><thead></thead><tbody></tbody></table></div></div>
+      <div class="insight-grid" id="standingsInsights"></div>
+    </section>
+
+    <section id="champions" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">THE TROPHY CASE</span><h2>Championship History</h2><p>Every completed FAM title game preserved from the league archive.</p></div></div>
+      <div class="champ-layout"><div class="ring-board" id="ringBoard"></div><div class="timeline" id="champTimeline"></div></div>
+    </section>
+
+    <section id="h2h" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">RECEIPTS</span><h2>Head-to-Head Lab</h2><p>Pick any two current managers, then jump into the full matrix.</p></div></div>
+      <div class="rivalry-lab">
+        <div class="rivalry-picker"><label>Manager A<select id="h2hA"></select></label><div class="versus">VS</div><label>Manager B<select id="h2hB"></select></label></div>
+        <div class="h2h-result" id="h2hResult"></div>
+      </div>
+      <div class="matrix-toolbar"><div class="segmented" id="matrixMode"><button data-mode="regular" class="active">Regular Season</button><button data-mode="playoff">Title Playoffs</button><button data-mode="competitive">All Competitive</button><button data-mode="postseason">All Postseason</button></div></div>
+      <div class="table-card matrix-card"><div class="table-scroll"><table id="h2hMatrix"></table></div></div>
+      <h3 class="subhead">Biggest rivalries</h3><div class="rivalry-grid" id="rivalryGrid"></div>
+    </section>
+
+    <section id="records" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">RECORD BOOK</span><h2>League Extremes</h2><p>The games people still bring up years later.</p></div></div>
+      <div class="records-grid" id="recordsGrid"></div>
+    </section>
+
+    <section id="managers" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">THE CURRENT 12</span><h2>Manager Profiles</h2><p>Tap a manager for championships, season history, names and H2H receipts.</p></div></div>
+      <div class="manager-grid" id="managerGrid"></div>
+    </section>
+
+    <section id="history" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">YEAR BY YEAR</span><h2>League History</h2><p>Season standings, scoring, finish and team-name archive.</p></div><label class="select-label">Season<select id="seasonFilter"></select></label></div>
+      <div class="season-hero" id="seasonHero"></div>
+      <div class="table-card"><div class="table-scroll"><table id="seasonTable"><thead></thead><tbody></tbody></table></div></div>
+      <h3 class="subhead">Former managers</h3><div class="former-grid" id="formerGrid"></div>
+    </section>
+
+    <section id="scores" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">SCORE ARCHIVE</span><h2>Weekly Scoreboard</h2><p>Search historical team-games by season and week.</p></div><div class="filters"><label>Season<select id="scoreSeason"></select></label><label>Week<select id="scoreWeek"></select></label></div></div>
+      <div class="table-card"><div class="table-scroll"><table id="scoresTable"><thead></thead><tbody></tbody></table></div></div>
+    </section>
+
+    <section id="playoffs" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">POSTSEASON</span><h2>Championship Bracket Archive</h2><p>Only games on the true championship path — placement games do not inflate playoff records.</p></div><label class="select-label">Season<select id="playoffSeason"></select></label></div>
+      <div class="playoff-list" id="playoffList"></div>
+    </section>
+
+    <section id="draft" class="section-shell section-block">
+      <div class="section-heading"><div><span class="kicker">DRAFT VAULT</span><h2>Draft History</h2><p>More than a decade of picks. Filter by season, manager or player.</p></div></div>
+      <div class="draft-controls"><label>Season<select id="draftSeason"></select></label><label>Manager<select id="draftManager"></select></label><label class="search-wrap">Player<input id="draftSearch" type="search" placeholder="Search player…" /></label></div>
+      <div class="table-card"><div class="table-scroll"><table id="draftTable"><thead></thead><tbody></tbody></table></div><div class="table-note" id="draftCount"></div></div>
+    </section>
+  </main>
+
+  <dialog id="managerDialog"><button class="dialog-close" id="dialogClose">×</button><div id="managerProfile"></div></dialog>
+
+  <footer><div><strong>FAM Fantasy Football</strong><span>Unofficial league record book</span></div><p>Generated from validated ESPN league-history data. Not affiliated with or endorsed by ESPN or The Walt Disney Company.</p><small id="updatedAt"></small></footer>
+
+  <script src="data/payload.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
