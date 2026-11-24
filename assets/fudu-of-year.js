@@ -110,24 +110,10 @@ function latestCompletedRegularWeek(D,season){
   return weeks.length?Math.max(...weeks):0;
 }
 
-function expectedCurrentRegularWeeks(D){
-  const current=Number(D.meta?.currentSeason);
-  const prior=[...new Set((D.weeklyScores||[]).map(x=>Number(x.season)).filter(y=>y<current))].sort((a,b)=>b-a);
-  for(const season of prior){
-    const max=latestCompletedRegularWeek(D,season);
-    if(max) return max;
-  }
-  return 14;
-}
-
 function currentRegularSeasonComplete(D){
-  const current=Number(D.meta?.currentSeason);
-  const currentRows=(D.weeklyScores||[]).filter(x=>Number(x.season)===current);
-  const hasPostseason=currentRows.some(x=>x.tier&&x.tier!=='REGULAR_SEASON'&&['W','L','T'].includes(x.result));
-  if(hasPostseason) return true;
-  const completed=latestCompletedRegularWeek(D,current);
-  const expected=expectedCurrentRegularWeeks(D);
-  return expected>0&&completed>=expected;
+  // Backend verifies the configured matchup count and all scheduled regular games.
+  // Missing metadata is deliberately not treated as season completion.
+  return D.meta?.regularSeasonComplete===true;
 }
 
 function faces(count){
